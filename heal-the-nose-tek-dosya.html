@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="./vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Çok Özür Dilerim 💖</title>
+  <!-- Google Fonts: Quicksand for a soft, round look -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+  <script type="module" crossorigin>(function(){const t=document.createElement("link").relList;if(t&&t.supports&&t.supports("modulepreload"))return;for(const r of document.querySelectorAll('link[rel="modulepreload"]'))o(r);new MutationObserver(r=>{for(const n of r)if(n.type==="childList")for(const u of n.addedNodes)u.tagName==="LINK"&&u.rel==="modulepreload"&&o(u)}).observe(document,{childList:!0,subtree:!0});function s(r){const n={};return r.integrity&&(n.integrity=r.integrity),r.referrerPolicy&&(n.referrerPolicy=r.referrerPolicy),r.crossOrigin==="use-credentials"?n.credentials="include":r.crossOrigin==="anonymous"?n.credentials="omit":n.credentials="same-origin",n}function o(r){if(r.ep)return;r.ep=!0;const n=s(r);fetch(r.href,n)}})();let f=0;const T=3,m=document.querySelectorAll(".band-aid"),L=document.querySelectorAll(".target-zone"),h=document.getElementById("message-container"),l=document.getElementById("success-overlay"),p=document.getElementById("restart-btn"),d=document.querySelector(".realistic-nose"),g=["Çok özür dilerim! 🥺","Benim hatamdı, affet! 💖","Biraz daha iyiyim... 🤕","Şifa niyetine! ✨","Seni seviyorum! 🥰"];let a=null;m.forEach(e=>{e.addEventListener("dragstart",()=>{a=e,setTimeout(()=>{e.classList.add("dragging")},0)}),e.addEventListener("dragend",()=>{e.classList.remove("dragging"),a=null})});L.forEach(e=>{e.addEventListener("dragover",t=>{t.preventDefault(),e.classList.contains("healed")||e.classList.add("active")}),e.addEventListener("dragleave",()=>{e.classList.remove("active")}),e.addEventListener("drop",t=>{t.preventDefault(),e.classList.remove("active"),E(e)})});let v=0,y=0,i=0,c=0;m.forEach(e=>{e.addEventListener("touchstart",t=>{const s=t;a=e,e.classList.add("dragging"),v=s.touches[0].clientX-i,y=s.touches[0].clientY-c},{passive:!1}),e.addEventListener("touchmove",t=>{if(!a)return;const s=t;t.preventDefault(),i=s.touches[0].clientX-v,c=s.touches[0].clientY-y,a.style.transform=`translate(${i}px, ${c}px)`},{passive:!1}),e.addEventListener("touchend",t=>{if(!a)return;const s=t;e.classList.remove("dragging");const o=s.changedTouches[0],n=document.elementFromPoint(o.clientX,o.clientY)?.closest(".target-zone");n&&!n.classList.contains("healed")?E(n):(a.style.transition="transform 0.3s ease",a.style.transform="translate(0px, 0px)",setTimeout(()=>{a&&(a.style.transition="transform 0.2s")},300)),i=0,c=0,setTimeout(()=>{a=null},50)})});function E(e){if(!a||e.classList.contains("healed"))return;e.classList.add("healed");const t=a.querySelector("svg")?.cloneNode(!0);t&&(t.classList.add("placed-band-aid"),e.appendChild(t)),a.classList.add("used"),a.style.transform="translate(0px, 0px)",f++,x(e),f>=T&&setTimeout(M,800)}function x(e){if(!h)return;const t=document.createElement("div");t.className="floating-msg";const s=g[Math.floor(Math.random()*g.length)];t.innerText=s,t.style.left=`${e.offsetLeft-40}px`,t.style.top=`${e.offsetTop+20}px`,h.appendChild(t),setTimeout(()=>{t.remove()},2e3)}function M(){d&&d.classList.add("happy"),l&&(l.classList.add("show"),S())}function S(){const e=document.getElementById("hearts-container");if(e){e.innerHTML="";for(let t=0;t<30;t++){const s=document.createElement("div");s.className="heart-particle",s.innerHTML="❤️",s.style.left=`${Math.random()*100}%`,s.style.animationDelay=`${Math.random()*2}s`,s.style.fontSize=`${Math.random()*1.5+.8}rem`,e.appendChild(s)}}}p&&p.addEventListener("click",()=>{f=0,l&&l.classList.remove("show"),L.forEach(e=>{e.classList.remove("healed","active");const t=e.querySelector(".placed-band-aid");t&&t.remove()}),m.forEach(e=>{e.classList.remove("used"),e.style.transform="translate(0px, 0px)"}),d&&d.classList.remove("happy")});</script>
+  <style rel="stylesheet" crossorigin>:root{--bg-color: #FDF6F5;--text-primary: #5A4E4D;--text-secondary: #8A7A78;--accent-color: #FF9E9E;--wound-color: #E27D80;--wound-glow: rgba(226, 125, 128, .4);--drop-active: rgba(162, 210, 255, .4)}*{margin:0;padding:0;box-sizing:border-box}body{font-family:Quicksand,sans-serif;background-color:var(--bg-color);color:var(--text-primary);display:flex;justify-content:center;align-items:center;min-height:100vh;overflow:hidden}#app{width:100%;max-width:500px;height:100vh;display:flex;flex-direction:column;position:relative;box-shadow:0 0 50px #0000000d;background:#fff;border-radius:20px}@media(min-width:501px){#app{height:90vh;margin:20px}}.header{text-align:center;padding:30px 20px 10px;z-index:10}.title{font-size:1.8rem;font-weight:700;color:var(--accent-color);margin-bottom:8px}.subtitle{font-size:1rem;color:var(--text-secondary);line-height:1.4}.game-area{flex:1;display:flex;justify-content:center;align-items:center;position:relative}.character-container{width:250px;height:250px;position:relative;animation:float 6s ease-in-out infinite}@keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-10px)}to{transform:translateY(0)}}.realistic-nose{width:100%;height:100%;object-fit:cover;border-radius:15px;box-shadow:0 4px 15px #0000001a;transition:all .5s ease}.tear{animation:tearDrop 2s infinite;opacity:0}#tear2{animation-delay:1s}@keyframes tearDrop{0%{transform:translateY(0);opacity:0}20%{opacity:1}80%{transform:translateY(20px);opacity:0}to{transform:translateY(20px);opacity:0}}.target-zone{position:absolute;width:60px;height:30px;margin-left:-30px;margin-top:-15px;display:flex;justify-content:center;align-items:center;border-radius:20px;border:2px dashed transparent;transition:all .3s ease;z-index:5}.target-zone.active{border-color:#a2d2ff;background-color:var(--drop-active);transform:scale(1.1)}.wound-mark{width:20px;height:6px;background-color:var(--wound-color);border-radius:10px;box-shadow:0 0 8px var(--wound-glow);transform:rotate(-15deg)}.target-zone.healed .wound-mark{display:none}.placed-band-aid{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-15deg) scale(0);width:60px;animation:popIn .4s cubic-bezier(.175,.885,.32,1.275) forwards;pointer-events:none}@keyframes popIn{0%{transform:translate(-50%,-50%) rotate(-15deg) scale(0)}to{transform:translate(-50%,-50%) rotate(-15deg) scale(1.2)}}#message-container{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:20}.floating-msg{position:absolute;background:#fff;padding:8px 15px;border-radius:20px;font-size:.9rem;font-weight:600;color:var(--accent-color);box-shadow:0 5px 15px #ff9e9e4d;animation:floatUpMsg 2s ease-out forwards;opacity:0}@keyframes floatUpMsg{0%{transform:translateY(0) scale(.8);opacity:0}20%{transform:translateY(-20px) scale(1.1);opacity:1}80%{transform:translateY(-40px) scale(1);opacity:1}to{transform:translateY(-50px) scale(.9);opacity:0}}.inventory{padding:20px;background:linear-gradient(to top,rgba(255,224,210,.5),transparent);border-bottom-left-radius:20px;border-bottom-right-radius:20px}.instruction{text-align:center;font-weight:600;margin-bottom:15px;color:var(--accent-color)}.band-aids-container{display:flex;justify-content:space-around;align-items:center;height:60px}.band-aid{width:80px;cursor:grab;transition:transform .2s;touch-action:none}.band-aid:active{cursor:grabbing;transform:scale(1.1)}.band-aid.dragging{opacity:.5}.band-aid.used{visibility:hidden}.success-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:#ffffffe6;-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);display:flex;justify-content:center;align-items:center;z-index:100;opacity:0;pointer-events:none;transition:opacity .5s ease;border-radius:20px}.success-overlay.show{opacity:1;pointer-events:auto}.success-content{text-align:center;padding:30px;transform:scale(.8);transition:transform .5s cubic-bezier(.175,.885,.32,1.275)}.success-overlay.show .success-content{transform:scale(1)}.glow-text{font-size:2.2rem;color:#ff7477;text-shadow:0 0 20px rgba(255,116,119,.4);margin-bottom:15px}.success-content p{font-size:1.1rem;line-height:1.5;margin-bottom:25px}.hearts-container{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:-1}.heart-particle{position:absolute;font-size:1.5rem;animation:floatHeart 4s linear infinite;opacity:0}@keyframes floatHeart{0%{transform:translateY(100vh) scale(.5);opacity:1}to{transform:translateY(-100px) scale(1.5);opacity:0}}.glass-btn{background:linear-gradient(135deg,#ff9e9e,#ff7477);color:#fff;border:none;padding:12px 25px;border-radius:25px;font-size:1rem;font-weight:700;font-family:inherit;cursor:pointer;box-shadow:0 8px 20px #ff747766;transition:all .3s ease}.glass-btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px #ff747799}.glass-btn:active{transform:translateY(1px)}.realistic-nose.happy{filter:drop-shadow(0 0 15px rgba(255,183,178,.8))}</style>
+</head>
+
+<body>
+  <div id="app">
+
+    <!-- Başlık ve Mesajlar -->
+    <header class="header">
+      <h1 class="title">Yanlışlıkla oldu, çok özür dilerim! 🥺</h1>
+      <p class="subtitle">Seni çok seviyorum ve çok özür dilerim. Lütfen yaraları iyileştirir misin?</p>
+    </header>
+
+    <!-- Oyun Alanı: Ortadaki Burun / Surat Kısmı -->
+    <main class="game-area">
+      <div class="character-container" id="character-container">
+        <!-- Custom Photo Nose (Using Direct URL) -->
+        <img src="https://raw.githubusercontent.com/umuttanhediyeler/nose-rep/main/Ads%C4%B1z%20tasar%C4%B1m-6.png"
+          alt="Yaralı Burun" class="realistic-nose photo-nose" />
+
+        <!-- Drop Zonları (Yara yerleri) -->
+        <!-- Burnun etrafında 3 adet hedef nokta belirleyeceğiz -->
+        <div class="wound target-zone" data-id="1" style="top: 50%; left: 40%;">
+          <div class="wound-mark"></div>
+        </div>
+        <div class="wound target-zone" data-id="2" style="top: 55%; left: 50%;">
+          <div class="wound-mark"></div>
+        </div>
+        <div class="wound target-zone" data-id="3" style="top: 50%; left: 60%;">
+          <div class="wound-mark"></div>
+        </div>
+
+        <!-- Yüzen Tatlı Mesajlar için Container -->
+        <div id="message-container"></div>
+      </div>
+    </main>
+
+    <!-- Buzlar Listesi (Drag Items) -->
+    <footer class="inventory">
+      <p class="instruction">Buzları sürükle ve iyileştir! 🧊✨</p>
+      <div class="band-aids-container ice-cubes-container">
+        <!-- 1. Buz -->
+        <div class="band-aid draggable" draggable="true" data-id="1">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="15" y="15" width="70" height="70" rx="15" fill="#BDE0FE" opacity="0.8" />
+            <rect x="25" y="25" width="50" height="50" rx="10" fill="#A2D2FF" />
+            <polygon points="25,45 25,25 45,25" fill="#FFFFFF" opacity="0.7" />
+            <polygon points="75,55 75,75 55,75" fill="#FFFFFF" opacity="0.4" />
+            <rect x="35" y="45" width="30" height="20" fill="#FFFFFF" opacity="0.3" rx="5" />
+          </svg>
+        </div>
+        <!-- 2. Buz -->
+        <div class="band-aid draggable" draggable="true" data-id="2">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="15" y="15" width="70" height="70" rx="15" fill="#BDE0FE" opacity="0.8" />
+            <rect x="25" y="25" width="50" height="50" rx="10" fill="#A2D2FF" />
+            <polygon points="25,45 25,25 45,25" fill="#FFFFFF" opacity="0.7" />
+            <polygon points="75,55 75,75 55,75" fill="#FFFFFF" opacity="0.4" />
+            <rect x="35" y="45" width="30" height="20" fill="#FFFFFF" opacity="0.3" rx="5" />
+          </svg>
+        </div>
+        <!-- 3. Buz -->
+        <div class="band-aid draggable" draggable="true" data-id="3">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <rect x="15" y="15" width="70" height="70" rx="15" fill="#BDE0FE" opacity="0.8" />
+            <rect x="25" y="25" width="50" height="50" rx="10" fill="#A2D2FF" />
+            <polygon points="25,45 25,25 45,25" fill="#FFFFFF" opacity="0.7" />
+            <polygon points="75,55 75,75 55,75" fill="#FFFFFF" opacity="0.4" />
+            <rect x="35" y="45" width="30" height="20" fill="#FFFFFF" opacity="0.3" rx="5" />
+          </svg>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Final Kazandı Ekranı Overlay -->
+    <div class="success-overlay" id="success-overlay">
+      <div class="success-content">
+        <h2 class="glow-text">Yuppi! İyileştin! 🎉</h2>
+        <p>Kafam biraz sert olabilir ama kalbim pamuk gibi. Seni çok ama çok seviyorum! Lütfen beni affet! 💖</p>
+        <div class="hearts-container" id="hearts-container"></div>
+        <button id="restart-btn" class="glass-btn">Tekrar Oyna / İyileştir</button>
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>
